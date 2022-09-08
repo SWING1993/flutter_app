@@ -82,37 +82,32 @@ class ThirdBarView extends StatefulWidget {
 }
 
 class ThirdBarViewState extends State<ThirdBarView> with SingleTickerProviderStateMixin{
-
   List tabs = ["新闻", "历史", "图片"];
   late TabController tabController;
   @override
   void initState() {
     super.initState();
     tabController = TabController(length: tabs.length, vsync: this);
+    tabController.addListener(() {
+      print(this.tabController.index);
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        TabBar(
-          tabs: tabs.map((text) => Tab(text: text)).toList(),
-          controller: tabController,
-          labelColor: Colors.blue,
-          indicatorColor: Colors.pink,
-        ),
-        Expanded(
-          child: TabBarView(
-            controller: tabController,
-            children: tabs.map((text){
-              return Center(
-                child: Text(text),
-              );
-            }).toList(),
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: TabBar(
+            controller: this.tabController,
+            tabs: tabs.map((text) => Tab(text: text)).toList(),
           ),
         ),
-      ],
-    );
+        body: TabBarView(
+          controller: this.tabController,
+          children: tabs.map((text) => ListTile(title: Text(text))).toList(),
+        ));
   }
 }
 
@@ -142,3 +137,5 @@ class MyTopBar extends StatelessWidget {
     );
   }
 }
+
+
