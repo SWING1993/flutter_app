@@ -93,7 +93,6 @@ class ThirdBarViewState extends State<ThirdBarView> with SingleTickerProviderSta
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
