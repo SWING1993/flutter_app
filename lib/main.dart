@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'alert.dart';
+import 'myClipboard.dart';
 
 void main() => runApp(MaterialApp(
-  title: 'tabbar',
-  home: TableBarDemo(),
-));
+      title: 'tabbar',
+      home: TableBarDemo(),
+    ));
 
 class TableBarDemo extends StatefulWidget {
   @override
@@ -14,7 +16,6 @@ class TableBarDemo extends StatefulWidget {
 }
 
 class TableBarState extends State<TableBarDemo> {
-
   int selectedIndex = 0;
 
   final List<Widget> bottomBarViews = [
@@ -44,10 +45,8 @@ class TableBarState extends State<TableBarDemo> {
         ),
         tabBuilder: (context, index) {
           return bottomBarViews[index];
-        }
-    );
+        });
   }
-
 }
 
 class FirstBarView extends StatelessWidget {
@@ -57,8 +56,7 @@ class FirstBarView extends StatelessWidget {
         text: 'Android',
         style: TextStyle(fontSize: 20),
         uniqueHeroTag: 'tab1',
-        child: Text('android')
-    );
+        child: myClipboard());
   }
 }
 
@@ -69,8 +67,7 @@ class SecondBarView extends StatelessWidget {
         text: 'Favorite',
         style: TextStyle(fontSize: 20),
         uniqueHeroTag: 'tab1',
-        child: Text('favorite')
-    );
+        child: Text('favorite'));
   }
 }
 
@@ -81,7 +78,8 @@ class ThirdBarView extends StatefulWidget {
   }
 }
 
-class ThirdBarViewState extends State<ThirdBarView> with SingleTickerProviderStateMixin{
+class ThirdBarViewState extends State<ThirdBarView>
+    with SingleTickerProviderStateMixin {
   List tabs = ["新闻", "历史", "图片"];
   late TabController tabController;
   @override
@@ -136,5 +134,3 @@ class MyTopBar extends StatelessWidget {
     );
   }
 }
-
-
